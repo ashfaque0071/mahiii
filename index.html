@@ -39,6 +39,24 @@
     100%{transform:translateY(105vh) rotate(360deg);opacity:0}
   }
 
+  /* floating love words */
+  .love-words{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+  .love-word{
+    position:absolute;top:-80px;white-space:nowrap;
+    font-family:'Parisienne',cursive;
+    color:var(--rose);opacity:0;
+    text-shadow:0 2px 10px rgba(110,43,65,.14);
+    animation:loveWordFall linear infinite;
+  }
+  .love-word:nth-child(even){color:var(--wine)}
+  @keyframes loveWordFall{
+    0%{transform:translate3d(0,-80px,0) rotate(-7deg);opacity:0}
+    10%{opacity:.48}
+    48%{transform:translate3d(24px,50vh,0) rotate(5deg);opacity:.48}
+    90%{opacity:.42}
+    100%{transform:translate3d(-18px,110vh,0) rotate(-5deg);opacity:0}
+  }
+
   section{position:relative;z-index:2;padding:7rem 1.5rem;max-width:720px;margin:0 auto}
 
   .eyebrow{
@@ -252,8 +270,6 @@
   .reply-note{margin-top:1rem;font-style:italic;color:var(--rose);min-height:1.2em;font-family:'Cormorant Garamond',serif}
   /* SPECIAL reveal (taller) */
   #special.show{max-height:2000px}
-
-  /* special button — native HTML fallback, so it works without JavaScript */
   .special-details{text-align:center}
   .special-details summary{list-style:none;display:inline-block}
   .special-details summary::-webkit-details-marker{display:none}
@@ -297,6 +313,7 @@
 </div>
 
 <div class="petals" id="petals" aria-hidden="true"></div>
+<div class="love-words" id="loveWords" aria-hidden="true"></div>
 
 <!-- HERO -->
 <section class="hero">
@@ -642,6 +659,17 @@
     p.style.left=Math.random()*100+'vw';p.style.fontSize=(14+Math.random()*16)+'px';
     p.style.animationDuration=(9+Math.random()*11)+'s';p.style.animationDelay=(Math.random()*12)+'s';
     wrap.appendChild(p);
+  }
+  var loveWrap=document.getElementById('loveWords');
+  var lovePhrases=['I miss you','I love you'];
+  for(var j=0;j<12;j++){
+    var w=document.createElement('span');w.className='love-word';
+    w.textContent=lovePhrases[j%lovePhrases.length];
+    w.style.left=(2+Math.random()*92)+'vw';
+    w.style.fontSize=(16+Math.random()*9)+'px';
+    w.style.animationDuration=(13+Math.random()*10)+'s';
+    w.style.animationDelay=(-Math.random()*22)+'s';
+    loveWrap.appendChild(w);
   }
   function revealScan(){
     var vh=window.innerHeight||document.documentElement.clientHeight;
