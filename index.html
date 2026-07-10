@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Mahi 🤍</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Parisienne&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#FBF4EE;
+    --ivory-2:#F5E9E0;
+    --wine:#6E2B41;
+    --rose:#A64E63;
+    --blush:#E7B7C0;
+    --gold:#C29A54;
+    --ink:#4A3138;
+    --ink-soft:#6D555C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Lora',serif;
+    background:var(--ivory);
+    color:var(--ink);
+    line-height:1.9;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--blush);color:var(--wine)}
+
+  /* floating petals */
+  .petals{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+  .petal{position:absolute;top:-40px;font-size:20px;opacity:0;animation:fall linear infinite;color:var(--rose)}
+  @keyframes fall{
+    0%{transform:translateY(-40px) rotate(0deg);opacity:0}
+    10%{opacity:.7}
+    90%{opacity:.7}
+    100%{transform:translateY(105vh) rotate(360deg);opacity:0}
+  }
+
+  section{position:relative;z-index:2;padding:7rem 1.5rem;max-width:720px;margin:0 auto}
+
+  .eyebrow{
+    font-family:'Lora',serif;font-style:italic;
+    letter-spacing:.18em;text-transform:uppercase;
+    font-size:.72rem;color:var(--gold);
+    text-align:center;margin-bottom:1.5rem;
+  }
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-top:2rem}
+  .hero .for{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:var(--ink-soft);letter-spacing:.05em;opacity:0;animation:rise 1.4s ease .3s forwards}
+  .hero h1{
+    font-family:'Parisienne',cursive;
+    font-size:clamp(5rem,22vw,11rem);
+    color:var(--wine);
+    line-height:1;
+    margin:.4rem 0 1rem;
+    opacity:0;animation:rise 1.6s ease .6s forwards;
+  }
+  .hero .tag{font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,4vw,1.7rem);color:var(--rose);font-style:italic;opacity:0;animation:rise 1.6s ease 1s forwards}
+  .heartline{display:flex;align-items:center;gap:14px;margin:2.4rem 0 .5rem;opacity:0;animation:rise 1.6s ease 1.3s forwards}
+  .heartline .ln{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+  .heartline .ln.r{background:linear-gradient(90deg,var(--gold),transparent)}
+  .heartline .hrt{color:var(--rose);font-size:.9rem}
+  .scroll-hint{position:absolute;bottom:2.2rem;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink-soft);font-size:1rem;opacity:0;animation:rise 1.6s ease 2s forwards, bob 2.4s ease-in-out 2.6s infinite}
+  @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+  /* generic reveal */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity 1s ease,transform 1s ease}
+  .reveal.on{opacity:1;transform:translateY(0)}
+
+  h2.title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(2.1rem,7vw,3.1rem);
+    color:var(--wine);text-align:center;
+    font-weight:500;line-height:1.15;margin-bottom:2.4rem;
+  }
+  h2.title span{font-family:'Parisienne',cursive;color:var(--rose);font-weight:400}
+
+  /* LETTER */
+  .letter{background:var(--ivory-2);border:1px solid rgba(194,154,84,.35);border-radius:4px;padding:clamp(2rem,6vw,3.5rem);box-shadow:0 24px 60px -30px rgba(110,43,65,.4);position:relative}
+  .letter::before{content:"";position:absolute;inset:10px;border:1px solid rgba(194,154,84,.25);border-radius:2px;pointer-events:none}
+  .letter p{font-size:1.12rem;margin-bottom:1.3rem;color:var(--ink)}
+  .letter p:last-child{margin-bottom:0}
+  .letter .greet{font-family:'Parisienne',cursive;font-size:2.2rem;color:var(--rose);margin-bottom:1.4rem}
+  .letter .sign{font-family:'Parisienne',cursive;font-size:1.8rem;color:var(--wine);margin-top:1.8rem;text-align:right}
+  .emph{color:var(--rose);font-style:italic}
+
+  /* REASONS */
+  .reasons{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;margin-top:1rem}
+  .r-card{background:#fff;border:1px solid rgba(166,78,99,.16);border-radius:14px;padding:1.6rem 1.4rem;text-align:center;transition:transform .4s ease,box-shadow .4s ease}
+  .r-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px -22px rgba(110,43,65,.5)}
+  .r-card .ic{font-size:1.5rem;margin-bottom:.6rem}
+  .r-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--wine);font-weight:600;margin-bottom:.3rem}
+  .r-card p{font-size:.98rem;color:var(--ink-soft)}
+
+  /* SONGS */
+  .song{display:flex;align-items:center;gap:1.1rem;background:var(--ivory-2);border-radius:12px;padding:1.1rem 1.3rem;margin-bottom:1rem;border:1px solid rgba(194,154,84,.25);transition:background .3s ease}
+  .song:hover{background:#F3DFD3}
+  .song .note{font-size:1.4rem;color:var(--rose)}
+  .song .meta h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--wine);font-weight:600}
+  .song .meta p{font-size:.9rem;color:var(--ink-soft);font-style:italic}
+
+  /* ANNIVERSARY */
+  .anniv{text-align:center}
+  .date-big{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,10vw,4.4rem);color:var(--wine);letter-spacing:.04em;line-height:1;margin:.5rem 0}
+  .date-big em{font-family:'Parisienne',cursive;font-style:normal;color:var(--rose)}
+  .counter{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+  .unit{background:var(--ivory-2);border:1px solid rgba(194,154,84,.3);border-radius:14px;padding:1.1rem 1.3rem;min-width:92px}
+  .unit .num{font-family:'Cormorant Garamond',serif;font-size:2.1rem;color:var(--wine);font-weight:600;line-height:1}
+  .unit .lbl{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:.4rem}
+
+  /* PROMISES LIST */
+  .vows{list-style:none;margin-top:1rem}
+  .vows li{background:#fff;border:1px solid rgba(166,78,99,.16);border-left:3px solid var(--rose);border-radius:0 12px 12px 0;padding:1.1rem 1.4rem;margin-bottom:1rem;font-size:1.08rem;color:var(--ink)}
+  .vows li b{color:var(--wine);font-weight:600}
+
+  /* PROMISE */
+  .promise{text-align:center}
+  .promise .big{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.5rem,5vw,2.1rem);color:var(--wine);line-height:1.5}
+  .ring{font-size:2rem;margin:1.5rem 0}
+
+  /* button reveal */
+  .center{text-align:center}
+  .btn{
+    font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;
+    background:var(--wine);color:var(--ivory);border:none;cursor:pointer;
+    padding:.85rem 2.2rem;border-radius:40px;letter-spacing:.03em;
+    transition:transform .3s ease,background .3s ease;box-shadow:0 12px 30px -14px rgba(110,43,65,.7)
+  }
+  .btn:hover{background:var(--rose);transform:translateY(-3px)}
+  .hidden-msg{max-height:0;overflow:hidden;transition:max-height .9s ease,opacity .9s ease;opacity:0}
+  .hidden-msg.show{max-height:600px;opacity:1;margin-top:1.8rem}
+  .hidden-msg p{font-size:1.12rem;color:var(--ink);font-style:italic}
+
+
+  /* GALLERY */
+  .gallery{columns:3;column-gap:10px}
+  @media(max-width:640px){.gallery{columns:2;column-gap:8px}}
+  .ph{display:block;width:100%;margin:0 0 10px;padding:0;border:none;background:none;cursor:pointer;break-inside:avoid;border-radius:12px;overflow:hidden;box-shadow:0 10px 26px -18px rgba(110,43,65,.55);transition:transform .35s ease}
+  .ph img{display:block;width:100%;border-radius:12px;transition:filter .35s ease}
+  .ph:hover{transform:translateY(-4px)}
+  .ph:hover img{filter:brightness(1.05)}
+  .lbwrap{position:fixed;inset:0;background:rgba(74,49,56,.92);display:none;align-items:center;justify-content:center;z-index:99;padding:1.2rem;cursor:zoom-out}
+  .lbwrap.on{display:flex}
+  .lbwrap img{max-width:94%;max-height:90%;border-radius:10px;box-shadow:0 30px 80px -20px rgba(0,0,0,.7)}
+  .lbx{position:fixed;top:18px;right:22px;color:#fff;font-size:2rem;font-family:'Cormorant Garamond',serif;cursor:pointer;z-index:100;line-height:1}
+
+
+  /* MUSIC */
+  .songlist{display:flex;flex-direction:column;gap:12px}
+  .song{width:100%;text-align:left;display:flex;align-items:center;gap:14px;background:var(--ivory-2);border:1px solid rgba(194,154,84,.3);border-radius:14px;padding:14px 16px;cursor:pointer;transition:background .3s ease,border-color .3s ease}
+  .song:hover{background:#F3DFD3}
+  .song.playing{background:#F3DFD3;border-color:var(--rose)}
+  .pbtn{flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:var(--wine);color:var(--ivory);display:flex;align-items:center;justify-content:center;font-size:1rem;transition:background .3s ease}
+  .song.playing .pbtn{background:var(--rose)}
+  .song .meta{flex:1}
+  .song .meta h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--wine);font-weight:600;line-height:1.2}
+  .song .meta p{font-size:.92rem;color:var(--ink-soft);font-style:italic}
+  .song .artist{font-size:.8rem;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+  .miniplayer{position:fixed;left:50%;transform:translateX(-50%) translateY(120%);bottom:16px;width:min(92%,420px);background:var(--wine);color:var(--ivory);border-radius:40px;display:flex;align-items:center;gap:12px;padding:10px 14px;box-shadow:0 18px 40px -12px rgba(110,43,65,.7);z-index:60;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+  .miniplayer.up{transform:translateX(-50%) translateY(0)}
+  .mp-pp,.mp-next{flex:0 0 auto;width:38px;height:38px;border-radius:50%;border:none;background:rgba(255,255,255,.15);color:var(--ivory);cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:background .2s ease}
+  .mp-pp:hover,.mp-next:hover{background:rgba(255,255,255,.3)}
+  .mp-info{flex:1;min-width:0}
+  .mp-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mp-bar{height:4px;background:rgba(255,255,255,.2);border-radius:2px;margin-top:5px;overflow:hidden}
+  .mp-fill{height:100%;width:0;background:var(--blush);border-radius:2px;transition:width .25s linear}
+
+
+  .galgroup{margin-bottom:2.4rem}
+  .galhead{text-align:center;margin:2.6rem 0 1.4rem}
+  .galhead .gh{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--wine);font-weight:600}
+  .galhead .gs{font-style:italic;color:var(--ink-soft);font-size:1rem;margin-top:.2rem}
+
+
+  /* CHAPTERS */
+  .chapter{text-align:center;margin:2.6rem 0 1.2rem}
+  .chapter:first-of-type{margin-top:.5rem}
+  .chap-t{font-family:'Parisienne',cursive;font-size:2.1rem;color:var(--rose);font-weight:400;line-height:1}
+  .chap-s{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink-soft);font-size:1.05rem;margin-top:.2rem}
+  /* LAMENT block in letter */
+  .lament{margin:1.4rem 0;padding:1.1rem 1.3rem;border-left:2px solid var(--rose);background:rgba(231,183,192,.16);border-radius:0 8px 8px 0}
+  .lament p{margin:0 0 .5rem;font-style:italic;color:var(--wine);font-size:1.05rem}
+  .lament p:last-child{margin-bottom:0}
+
+
+  /* INTRO / TAP TO BEGIN */
+  .intro{position:fixed;inset:0;z-index:200;background:var(--ivory);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;padding:1.5rem;transition:opacity 1.1s ease}
+  .intro.gone{opacity:0;pointer-events:none}
+  .intro .forr{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink-soft);font-size:1.2rem;letter-spacing:.05em}
+  .intro .nm{font-family:'Parisienne',cursive;font-size:clamp(4.5rem,22vw,9rem);color:var(--wine);line-height:1;margin:.3rem 0 1.4rem}
+  .intro .hint{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--rose);font-size:1.25rem;animation:bob 2.4s ease-in-out infinite}
+  .intro .ln{width:52px;height:1px;background:var(--gold);margin:1.6rem auto 0}
+
+
+  /* LOCK */
+  .lock{position:fixed;inset:0;z-index:300;background:var(--ivory);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.5rem;transition:opacity 1s ease}
+  .lock.gone{opacity:0;pointer-events:none}
+  .lock .em{font-size:3rem;margin:.2rem 0 1rem}
+  .lock-t{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--wine);font-size:1.4rem}
+  .lock-s{font-family:'Cormorant Garamond',serif;color:var(--ink-soft);font-style:italic;margin-top:.3rem}
+  .pwbox{display:flex;gap:8px;margin-top:1.6rem;align-items:center;flex-wrap:wrap;justify-content:center}
+  .pwbox.shake{animation:shake .45s}
+  @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+  .pwbox input{font-family:'Cormorant Garamond',serif;font-size:1.1rem;padding:.7rem 1.1rem;border:1px solid var(--gold);border-radius:30px;outline:none;background:#fff;color:var(--ink);text-align:center;width:200px}
+  .pwbox button{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;background:var(--wine);color:var(--ivory);border:none;border-radius:30px;padding:.72rem 1.4rem;cursor:pointer}
+  .pwerr{color:var(--rose);font-style:italic;font-family:'Cormorant Garamond',serif;margin-top:1rem;min-height:1.2em;opacity:0;transition:opacity .3s}
+  .pwhint{color:var(--gold);font-size:.85rem;margin-top:1.4rem;font-style:italic}
+  /* ENVELOPES */
+  .envs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  .env{background:var(--ivory-2);border:1px solid rgba(194,154,84,.3);border-radius:14px;padding:1.4rem 1rem;cursor:pointer;font-size:1.7rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;transition:transform .3s,background .3s}
+  .env:hover{transform:translateY(-4px);background:#F3DFD3}
+  .env span{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--wine)}
+  .env-modal{position:fixed;inset:0;background:rgba(74,49,56,.9);display:none;align-items:center;justify-content:center;z-index:130;padding:1.3rem}
+  .env-modal.on{display:flex}
+  .env-card{background:var(--ivory);border-radius:16px;max-width:520px;padding:2.4rem 2.2rem;position:relative;box-shadow:0 30px 80px -20px rgba(0,0,0,.6);border:1px solid rgba(194,154,84,.4)}
+  .env-card h3{font-family:'Parisienne',cursive;color:var(--rose);font-size:2rem;margin-bottom:1rem;font-weight:400}
+  .env-card p{font-size:1.1rem;color:var(--ink);line-height:1.85}
+  .env-x{position:absolute;top:10px;right:16px;font-size:1.7rem;color:var(--ink-soft);cursor:pointer;font-family:'Cormorant Garamond',serif;line-height:1}
+  /* SLIDESHOW */
+  .ssbtn{text-align:center;margin-bottom:1.8rem}
+  .show{position:fixed;inset:0;background:rgba(74,49,56,.96);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:120;padding:1.2rem}
+  .show.on{display:flex}
+  .show-stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;width:100%}
+  .show-stage img{max-width:92%;max-height:66vh;border-radius:10px;box-shadow:0 30px 80px -20px rgba(0,0,0,.7)}
+  .show-cap{color:var(--ivory);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;text-align:center;max-width:640px;line-height:1.5;min-height:2.6em}
+  .show-ctrl{display:flex;gap:1rem;align-items:center;margin-top:.6rem}
+  .show-ctrl button{width:48px;height:48px;border-radius:50%;border:none;background:rgba(255,255,255,.16);color:#fff;font-size:1.2rem;cursor:pointer}
+  .show-ctrl button:hover{background:rgba(255,255,255,.3)}
+  .show-x{position:fixed;top:14px;right:20px;color:#fff;font-size:2rem;cursor:pointer;font-family:'Cormorant Garamond',serif;z-index:121}
+  /* lightbox caption */
+  .lbcap{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);color:#fff;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;text-align:center;max-width:86%;text-shadow:0 2px 12px rgba(0,0,0,.7);pointer-events:none}
+
+
+  /* LETTER DATE */
+  .ldate{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);text-align:right;font-size:.92rem;letter-spacing:.05em;margin-bottom:.6rem}
+  /* ADORATION */
+  .adore{text-align:center;max-width:620px;margin:0 auto}
+  .adore p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;color:var(--ink);margin-bottom:1rem;line-height:1.65}
+  .adore-big{font-family:'Parisienne',cursive;font-size:clamp(1.9rem,6vw,2.7rem);color:var(--rose);text-align:center;margin-top:1.9rem;line-height:1.3}
+  /* REPLY */
+  .reply{max-width:560px;margin:0 auto;text-align:center}
+  .reply textarea{width:100%;min-height:130px;font-family:'Lora',serif;font-size:1.05rem;color:var(--ink);background:var(--ivory-2);border:1px solid rgba(194,154,84,.4);border-radius:14px;padding:1rem 1.1rem;outline:none;resize:vertical}
+  .reply textarea:focus{border-color:var(--rose)}
+  .reply-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:1rem}
+  .btn2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;background:transparent;color:var(--wine);border:1px solid var(--wine);cursor:pointer;padding:.8rem 1.6rem;border-radius:40px;transition:background .3s,color .3s}
+  .btn2:hover{background:var(--wine);color:var(--ivory)}
+  .reply-note{margin-top:1rem;font-style:italic;color:var(--rose);min-height:1.2em;font-family:'Cormorant Garamond',serif}
+  /* SPECIAL reveal (taller) */
+  #special.show{max-height:2000px}
+
+  /* footer */
+  .end{text-align:center;padding-bottom:8rem}
+  .end .fx{font-family:'Parisienne',cursive;font-size:clamp(2.4rem,9vw,4rem);color:var(--wine)}
+  .end .sub{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink-soft);margin-top:.6rem;font-size:1.1rem}
+  .end .date{font-size:.8rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-top:2rem}
+
+  @media (max-width:600px){
+    section{padding:5rem 1.3rem}
+    .letter p{font-size:1.05rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important}
+    .reveal{opacity:1;transform:none}
+    .hero .for,.hero h1,.hero .tag,.heartline,.scroll-hint{opacity:1;animation:none}
+  }
+</style>
+<noscript><style>.reveal{opacity:1 !important;transform:none !important}.intro{display:none !important}</style></noscript>
+</head><body>
+<div class="lock" id="lock">
+  <p class="forr">just for you, Mahi</p>
+  <p class="em">🤍</p>
+  <p class="lock-t">This is a little world I made only for you.</p>
+  <p class="lock-s">Enter our secret word to come inside.</p>
+  <div class="pwbox" id="pwbox">
+    <input id="pw" type="password" placeholder="our word…" onkeydown="if(event.key==='Enter')tryUnlock()" autocomplete="off" autocapitalize="off">
+    <button onclick="tryUnlock()">Enter&nbsp;🤍</button>
+  </div>
+  <p class="pwerr" id="pwerr"></p>
+  <p class="pwhint">hint: <span id="hint"></span></p>
+</div>
+<div class="intro" id="intro" onclick="startExperience()">
+  <p class="forr">a little world, made only for</p>
+  <p class="nm">Mahi</p>
+  <p class="hint">&#9834;&nbsp; tap anywhere to begin</p>
+  <div class="ln"></div>
+</div>
+
+<div class="petals" id="petals" aria-hidden="true"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="for">For the one my heart chose — and keeps choosing —</p>
+  <h1>Mahi</h1>
+  <p class="tag">the love I will spend my life learning to deserve</p>
+  <div class="heartline"><span class="ln"></span><span class="hrt">&hearts;</span><span class="ln r"></span></div>
+  <p class="scroll-hint">scroll, my love &darr;</p>
+</section>
+
+<!-- OPENING -->
+<section>
+  <p class="eyebrow reveal">before anything else</p>
+  <h2 class="title reveal">This isn't to win you back.<br>It's to <span>love you honestly.</span></h2>
+  <p class="reveal" style="text-align:center;font-size:1.15rem;color:var(--ink-soft);font-style:italic">
+    I built this small world with my own hands, out of every memory and every feeling I hold for you —
+    not to pressure you, only to show you, all in one place, how immensely you are loved.
+  </p>
+</section>
+
+<!-- ANNIVERSARY -->
+<section class="anniv">
+  <p class="eyebrow reveal">where my whole world began</p>
+  <h2 class="title reveal" style="margin-bottom:1rem">The <span>20th</span> of September</h2>
+  <p class="date-big reveal"><em>20</em> &middot; 09 &middot; <em>2022</em></p>
+  <p class="reveal" style="font-style:italic;color:var(--ink-soft);margin-top:1rem;font-size:1.12rem">
+    The day you became inseparable from me. And every second since —
+  </p>
+  <div class="counter reveal" id="counter" aria-label="time since our anniversary"></div>
+  <p class="reveal" style="font-style:italic;color:var(--rose);margin-top:1.6rem;font-size:1.15rem">— I have loved you. Even in the moments I failed you, I never once stopped. 🤍</p>
+</section>
+
+<!-- LETTER -->
+<section>
+  <div class="letter reveal">
+    <p class="ldate">Written on the 8th of July</p>
+    <p class="greet">Mahi,</p>
+    <p>I don't know if my words can reach the place inside you that I have hurt. I don't know if this message will make anything better. But I still want to speak honestly, because there are things I should have understood earlier, said earlier, and shown earlier.</p>
+    <p>I don't have fancy words. I only have a heart that has loved you in ways I often failed to express properly. I love your smile, your voice, your eyes, your laugh, the way you talk, the way you get excited over small things, the way you feel deeply, the way you care, the way you become soft even when the world has been hard on you. I love the tiny details of you that maybe you don't even notice about yourself. Not just the easy parts. Not just the happy version of you. <span class="emph">I love you as a whole person.</span></p>
+    <p>But I also know that loving you was never supposed to mean hurting you. And that is where I failed.</p>
+    <p>I know I have hurt you through my immaturity, my panic, my poor decisions, my misunderstandings, my inability to listen properly, and my habit of wanting everything to become normal before your pain was actually healed. I know I made you feel unsafe. I know I made you feel unheard. I know I made you feel like your emotions were too much for me — when actually your emotions deserved patience, gentleness, and respect.</p>
+    <p>You deserved a partner who could sit with your pain without defending himself. You deserved someone who could understand your words, your silence, your mood, your small expectations, your excitement, your disappointment, and your tiredness. You deserved someone who would not make you explain the same hurt again and again just to be understood.</p>
+    <p>I am sorry that I was not that person when you needed me to be.</p>
+    <p>I am sorry for the times I acted like a child when you needed maturity from me. For the times I reacted from fear instead of understanding. For the times I made my panic bigger than your pain. For the times I begged for forgiveness but did not give you enough proof of change. For the times I wanted you to stay, but did not make staying feel safe for you.</p>
+    <p>I know I cannot simply say "forget everything" and expect you to become okay. Pain does not disappear just because someone says sorry. Trust does not come back just because love is still there. Respect, safety, and peace need to be rebuilt through actions, not emotional words.</p>
+    <p>And I know I damaged more than just moments. I damaged memories that should have been beautiful. You always wanted me to get into BUET. You were excited for me. You wanted to see me grow, succeed, and become something better. That journey should have been something I shared with you with happiness — my classes, my new routine, my small daily changes should have naturally included you. Because of my wrong handling, I failed to share those parts of my life with you. I made you feel outside of a life where you should have felt important.</p>
+    <p>And now I understand why it hurts you. The days where you should have felt proud, excited, and close to me became connected with pain and distance. I cannot bring those days back. But I can say clearly: <span class="emph">I am sorry that my journey, which you once cared about so much, became a source of hurt for you because of me.</span></p>
+    <p>I also know your own life has pressure — your admission exam, your studies, your family, your future, your peace. I should have made your life lighter, not heavier. I should have protected your peace, not added to it. I do not want you to damage your future because of me. I want you to study, to grow, to succeed, to become everything you are capable of becoming. If I truly love you, I have to respect your future, not pull you away from it because of my insecurity.</p>
+    <p>I am not writing this to make you feel guilty. Not to force you to come back. Not to say "look, I am sad, so you have to choose me." I do not want to love you in a way that traps you. <span class="emph">I want to love you in a way that finally gives you safety.</span></p>
+    <p>I still want a future with you, Mahi. I cannot lie about that. I still imagine a life where we heal properly, where we talk calmly, where we understand each other, where we build something peaceful instead of painful — the ordinary mornings, the small stories, the silly fights that end softly, the growing together. I still want to marry you someday. I still want a forever with you.</p>
+    <p>But I also understand that I cannot demand forever from someone I have hurt. I cannot ask you to trust the future if I have not repaired the present. I want to become someone you can feel safe with again — someone who listens before defending, understands before reacting, and respects your boundaries even when my heart is scared. Someone whose presence gives you calm, not pressure.</p>
+    <p>I know you may not believe me now. My words have lost value because my actions did not support them enough. I cannot blame you for that fear — I gave you reasons to feel it. But I want you to know that I am finally seeing things differently. I am not only afraid of losing you now. I am afraid of remaining the kind of person who hurt the person he loved most. I do not want to be that person anymore. <span class="emph">And I will be honest about one more thing: I miss you in a way I do not have words for, and you are on my mind every single day.</span> My love for you is not small, and it is not passing — it lives quietly in everything I do. But I will carry that longing myself. I will never make it your burden, and I will never use it to pull you back before you feel truly ready.</p>
+    <div class="lament">
+      <p>I am sorry for the pain.</p>
+      <p>I am sorry for the pressure.</p>
+      <p>I am sorry for the broken promises.</p>
+      <p>I am sorry for the immaturity.</p>
+      <p>I am sorry for not listening.</p>
+      <p>I am sorry for making you feel alone even while I said I loved you.</p>
+      <p>I am sorry for turning your excitement into hurt.</p>
+      <p>I am sorry for not becoming the safe place you needed.</p>
+    </div>
+    <p>You are not wrong for being tired. You are not wrong for being distant. You are not wrong for not trusting me immediately. You are not wrong for needing time, space, or proof. I will not blame your pain when my behavior helped create it.</p>
+    <p>I love you deeply. But now I understand that love has to be shown through patience, respect, understanding, and changed behavior — not only through emotional words. So I am not asking you to forget. I am not asking you to become normal today. I am only asking you to know that I finally understand that I did not just hurt you once — I hurt your sense of safety with me. And that is something I have to take seriously.</p>
+    <p>If there is ever a way back to us, I want it to be slow, honest, respectful, and safe for you. Built on real change, not fear. On listening, not pressure. On peace, not begging.</p>
+    <div class="lament">
+      <p>You mattered to me then.</p>
+      <p>You matter to me now.</p>
+      <p>You will always matter to me.</p>
+    </div>
+    <p>Not because I want to own you. Not because I want to force you to stay. But because my heart truly loves you, and I finally understand that loving you means respecting your pain too.</p>
+    <p>Forever, I will regret hurting you. And from now on, if I get any place in your life again, I want to earn it through the kind of behavior you deserved from me all along.</p>
+    <p class="sign">Yours — and finally learning how to be ♥</p>
+  </div>
+</section>
+
+<!-- REASONS -->
+<section>
+  <p class="eyebrow reveal">a love with no edges</p>
+  <h2 class="title reveal">Everything I love about <span>you</span></h2>
+  <div class="reasons">
+    <div class="r-card reveal"><div class="ic">🌸</div><h3>Your smile</h3><p>It has always been the best part of my every day.</p></div>
+    <div class="r-card reveal"><div class="ic">✨</div><h3>Your eyes</h3><p>The place I feel most at home in this world.</p></div>
+    <div class="r-card reveal"><div class="ic">🎶</div><h3>Your voice</h3><p>My favourite sound — even when it's angry with me.</p></div>
+    <div class="r-card reveal"><div class="ic">😄</div><h3>Your laugh</h3><p>Nobody has ever made me feel the way you do.</p></div>
+    <div class="r-card reveal"><div class="ic">🤍</div><h3>Your heart</h3><p>How deeply you feel — the very thing I must protect.</p></div>
+    <div class="r-card reveal"><div class="ic">♾️</div><h3>Simply you</h3><p>Every little detail. I love all of it, without end.</p></div>
+  </div>
+</section>
+
+<!-- MEMORIES -->
+<section>
+  <p class="eyebrow reveal">our story, in moments</p>
+  <h2 class="title reveal">Every memory with <span>you</span></h2>
+  <p class="reveal" style="text-align:center;font-style:italic;color:var(--ink-soft);margin-bottom:2.4rem">Every chapter of us — your face, our days, the small quiet moments. Tap any photo to hold it a little longer. 🤍</p>
+  <div class="ssbtn reveal"><button class="btn" onclick="showOpen()">&#9654;&nbsp; Play as a slideshow</button></div>
+  <div class="chapter reveal">
+    <h3 class="chap-t">Just you</h3>
+    <p class="chap-s">the face I could look at forever</p>
+  </div>
+  <div class="gallery reveal">
+    <button class="ph" data-cap="That smile — the first thing that ever undid me, and it still does." onclick="lb(this)"><img loading="lazy" src="photos/photo-01.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="The light always seems to find your face, like it knows you are something rare." onclick="lb(this)"><img loading="lazy" src="photos/photo-02.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Even in the simplest moment, you look like poetry to me." onclick="lb(this)"><img loading="lazy" src="photos/photo-03.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Your eyes hold whole worlds. I could get lost in them forever." onclick="lb(this)"><img loading="lazy" src="photos/photo-04.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="You do not even know how beautiful you are — and somehow that makes it more." onclick="lb(this)"><img loading="lazy" src="photos/photo-05.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Every soft expression of yours is a home I want to return to." onclick="lb(this)"><img loading="lazy" src="photos/photo-06.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="There is a gentleness in you no camera could ever fully capture." onclick="lb(this)"><img loading="lazy" src="photos/photo-07.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="You, unposed and real — that is the version of you I love the most." onclick="lb(this)"><img loading="lazy" src="photos/photo-08.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="A thousand faces in a crowd, and mine still only looks for you." onclick="lb(this)"><img loading="lazy" src="photos/photo-09.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Beautiful is not a big enough word for what you are to me." onclick="lb(this)"><img loading="lazy" src="photos/photo-10.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Your face is my favourite place in this entire world." onclick="lb(this)"><img loading="lazy" src="photos/photo-11.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="A little glimpse of you from before our story became ours." onclick="lb(this)"><img loading="lazy" src="photos/photo-43.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="That playful smile of yours has always made everything lighter." onclick="lb(this)"><img loading="lazy" src="photos/photo-44.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Soft, simple, and completely you." onclick="lb(this)"><img loading="lazy" src="photos/photo-45.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Even an ordinary afternoon becomes beautiful when you are in it." onclick="lb(this)"><img loading="lazy" src="photos/photo-46.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="The quiet confidence in your smile is one of the things I adore." onclick="lb(this)"><img loading="lazy" src="photos/photo-47.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Your funniest expressions are some of my favourite memories." onclick="lb(this)"><img loading="lazy" src="photos/photo-48.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="The silly side of you that never fails to make me smile." onclick="lb(this)"><img loading="lazy" src="photos/photo-49.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="You look radiant even in the simplest moment." onclick="lb(this)"><img loading="lazy" src="photos/photo-50.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Every little expression of yours feels precious to me." onclick="lb(this)"><img loading="lazy" src="photos/photo-51.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Your playful energy has always made my days brighter." onclick="lb(this)"><img loading="lazy" src="photos/photo-52.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Even when you are quiet, your face says everything." onclick="lb(this)"><img loading="lazy" src="photos/photo-53.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="A soft, unguarded moment that feels completely real." onclick="lb(this)"><img loading="lazy" src="photos/photo-54.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="You carry your own kind of beauty into every room." onclick="lb(this)"><img loading="lazy" src="photos/photo-55.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Every version of you has always felt familiar and dear to me." onclick="lb(this)"><img loading="lazy" src="photos/photo-56.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Those eyes, that expression — unmistakably you." onclick="lb(this)"><img loading="lazy" src="photos/photo-57.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Your smile has a warmth no photograph can fully hold." onclick="lb(this)"><img loading="lazy" src="photos/photo-58.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="A quiet moment, soft and honest, just as I remember you." onclick="lb(this)"><img loading="lazy" src="photos/photo-59.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Even while resting, you remain the face my heart searches for." onclick="lb(this)"><img loading="lazy" src="photos/photo-60.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="A candid moment of you that became a memory without trying." onclick="lb(this)"><img loading="lazy" src="photos/photo-61.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Even from a distance, my attention always found you." onclick="lb(this)"><img loading="lazy" src="photos/photo-62.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Your everyday expressions are among the things I miss most." onclick="lb(this)"><img loading="lazy" src="photos/photo-63.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Your presence turns an ordinary place into something worth remembering." onclick="lb(this)"><img loading="lazy" src="photos/photo-64.jpg" alt="A memory with Mahi"></button>
+  </div>
+  <div class="chapter reveal">
+    <h3 class="chap-t">You and me</h3>
+    <p class="chap-s">us — in every light, in every mood</p>
+  </div>
+  <div class="gallery reveal">
+    <button class="ph" data-cap="Us. Somehow the whole world goes quiet when it is you and me." onclick="lb(this)"><img loading="lazy" src="photos/photo-12.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Beside you is the only place that has ever truly felt like home." onclick="lb(this)"><img loading="lazy" src="photos/photo-13.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="You made even ordinary days feel like something worth remembering." onclick="lb(this)"><img loading="lazy" src="photos/photo-14.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="In your warmth I forgot every reason I had ever been afraid." onclick="lb(this)"><img loading="lazy" src="photos/photo-15.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="We laughed like the world could not touch us. I want that back — slowly, honestly." onclick="lb(this)"><img loading="lazy" src="photos/photo-16.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="You and me against everything — that was always my favourite team." onclick="lb(this)"><img loading="lazy" src="photos/photo-17.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="I never had to pretend with you. You saw all of me and stayed." onclick="lb(this)"><img loading="lazy" src="photos/photo-18.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Every photo of us is proof that we were real, and that we mattered." onclick="lb(this)"><img loading="lazy" src="photos/photo-19.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Your head resting near mine — the safest I have ever felt." onclick="lb(this)"><img loading="lazy" src="photos/photo-20.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="In a messy, imperfect, beautiful way, we simply fit." onclick="lb(this)"><img loading="lazy" src="photos/photo-21.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Being loved by you was the best thing that ever happened to me." onclick="lb(this)"><img loading="lazy" src="photos/photo-22.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="I want a lifetime of small, quiet moments exactly like this one." onclick="lb(this)"><img loading="lazy" src="photos/photo-23.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="You are my calm and my favourite kind of chaos, all at once." onclick="lb(this)"><img loading="lazy" src="photos/photo-24.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="With you, even silence felt like a conversation." onclick="lb(this)"><img loading="lazy" src="photos/photo-25.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="This — right here — is what I am working to deserve again." onclick="lb(this)"><img loading="lazy" src="photos/photo-26.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="You turned my ordinary life into something I was proud of." onclick="lb(this)"><img loading="lazy" src="photos/photo-27.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="No distance ever made you any less mine in my heart." onclick="lb(this)"><img loading="lazy" src="photos/photo-28.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="I looked at you like you were my whole future. You were. You are." onclick="lb(this)"><img loading="lazy" src="photos/photo-29.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Every version of us, I would choose again without thinking twice." onclick="lb(this)"><img loading="lazy" src="photos/photo-30.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Whatever we were doing, being next to you was always enough." onclick="lb(this)"><img loading="lazy" src="photos/photo-31.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Even in the dark, being beside you made the moment feel complete." onclick="lb(this)"><img loading="lazy" src="photos/photo-65.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Two young hearts, one ordinary day, and a memory that stayed." onclick="lb(this)"><img loading="lazy" src="photos/photo-66.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Close to you was always where I felt most at ease." onclick="lb(this)"><img loading="lazy" src="photos/photo-67.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="A quiet day together that still feels warm in my memory." onclick="lb(this)"><img loading="lazy" src="photos/photo-68.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Our faces side by side — one of my favourite kinds of photograph." onclick="lb(this)"><img loading="lazy" src="photos/photo-69.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="The simplest selfie became special because it was ours." onclick="lb(this)"><img loading="lazy" src="photos/photo-70.jpg" alt="A memory with Mahi"></button>
+  </div>
+  <div class="chapter reveal">
+    <h3 class="chap-t">The little things</h3>
+    <p class="chap-s">your hand in mine, even across any distance</p>
+  </div>
+  <div class="gallery reveal">
+    <button class="ph" data-cap="Your hand in mine — the simplest promise I ever made." onclick="lb(this)"><img loading="lazy" src="photos/photo-32.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Fingers laced, hearts a little louder — I never wanted to let go." onclick="lb(this)"><img loading="lazy" src="photos/photo-33.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Even the smallest touch from you meant absolutely everything." onclick="lb(this)"><img loading="lazy" src="photos/photo-34.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Across every mile, my hand still reaches for yours." onclick="lb(this)"><img loading="lazy" src="photos/photo-35.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="The quiet moments with you were never small. They were everything." onclick="lb(this)"><img loading="lazy" src="photos/photo-36.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Your head resting against me — a small moment that meant everything." onclick="lb(this)"><img loading="lazy" src="photos/photo-71.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="A moment of affection, imperfect and entirely ours." onclick="lb(this)"><img loading="lazy" src="photos/photo-72.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Your hand in mine, held with the tenderness I should always have shown." onclick="lb(this)"><img loading="lazy" src="photos/photo-73.jpg" alt="A memory with Mahi"></button>
+  </div>
+  <div class="chapter reveal">
+    <h3 class="chap-t">Days I'll never forget</h3>
+    <p class="chap-s">the places we went, the days we laughed</p>
+  </div>
+  <div class="gallery reveal">
+    <button class="ph" data-cap="The sea, the sunset, and you — a day I will carry forever." onclick="lb(this)"><img loading="lazy" src="photos/photo-37.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Wherever we went, you were the view I could never look away from." onclick="lb(this)"><img loading="lazy" src="photos/photo-38.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Colours, laughter, you — some days are stitched right into my soul." onclick="lb(this)"><img loading="lazy" src="photos/photo-39.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Every place became special the moment you were standing in it." onclick="lb(this)"><img loading="lazy" src="photos/photo-40.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="I would relive this day a hundred times just to hear you laugh again." onclick="lb(this)"><img loading="lazy" src="photos/photo-41.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="These are the memories I will protect for the rest of my life." onclick="lb(this)"><img loading="lazy" src="photos/photo-42.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="Flowers, colours, and the happiness of standing beside you." onclick="lb(this)"><img loading="lazy" src="photos/photo-74.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="One of those school days that quietly became part of our story." onclick="lb(this)"><img loading="lazy" src="photos/photo-75.jpg" alt="A memory with Mahi"></button>
+    <button class="ph" data-cap="So many pieces of our story, gathered together in one place." onclick="lb(this)"><img loading="lazy" src="photos/photo-76.jpg" alt="A memory with Mahi"></button>
+  </div>
+  <p class="reveal" style="text-align:center;font-style:italic;color:var(--rose);margin-top:2rem;font-size:1.15rem">…and every one of these, I'd choose again.</p>
+</section>
+
+<!-- ADORATION -->
+<section>
+  <p class="eyebrow reveal">the whole truth, plainly</p>
+  <h2 class="title reveal">And this is <span>who you are</span></h2>
+  <div class="adore reveal">
+    <p>You are the most beautiful person I have ever seen — and your beauty is immeasurable, inside and out.</p>
+    <p>You are the most caring, the most understanding soul I have ever met.</p>
+    <p>You love with your whole self. You want the best for me — and you would not rest until you saw me reach my very peak.</p>
+    <p>You are the most glamorous girl in any room, and somehow also the cutest — impossibly, adorably cute.</p>
+    <p>Your cooking is amazing. Your heart is softer and warmer than you let the world see.</p>
+    <p>Without you, life feels gone — because, simply, you are my everything.</p>
+  </div>
+  <p class="adore-big reveal">You are mine, only mine —<br>and I am only yours.<br>I love you so much, Mahi.</p>
+</section>
+
+<!-- SONGS -->
+<section>
+  <p class="eyebrow reveal">the songs that hold us</p>
+  <h2 class="title reveal">When I hear these,<br>it is always <span>you</span></h2>
+  <div class="songlist">
+    <button class="song reveal" id="song0" onclick="playSong(0)">
+      <span class="pbtn" id="pb0">&#9654;</span>
+      <div class="meta"><h3>Perfect</h3><p>because that is exactly what you are to me</p></div>
+      <span class="artist">Ed Sheeran</span>
+    </button>
+    <button class="song reveal" id="song1" onclick="playSong(1)">
+      <span class="pbtn" id="pb1">&#9654;</span>
+      <div class="meta"><h3>Can't Help Falling in Love</h3><p>some things are simply meant to be — like us</p></div>
+      <span class="artist">Elvis Presley</span>
+    </button>
+    <button class="song reveal" id="song2" onclick="playSong(2)">
+      <span class="pbtn" id="pb2">&#9654;</span>
+      <div class="meta"><h3>I Think They Call This Love</h3><p>with you, I finally understood the word</p></div>
+      <span class="artist">Elliot James Reay</span>
+    </button>
+    <button class="song reveal" id="song3" onclick="playSong(3)">
+      <span class="pbtn" id="pb3">&#9654;</span>
+      <div class="meta"><h3>Shudhu Tomake</h3><p>because every part of my heart keeps returning to you</p></div>
+      <span class="artist">FRANKLIN</span>
+    </button>
+    <button class="song reveal" id="song4" onclick="playSong(4)">
+      <span class="pbtn" id="pb4">&#9654;</span>
+      <div class="meta"><h3>Sila</h3><p>because some feelings remain written into the heart</p></div>
+      <span class="artist">Abdul Hannan &amp; Murtaza Qizilbash</span>
+    </button>
+  </div>
+  <p class="reveal" style="text-align:center;margin-top:1.6rem;font-style:italic;color:var(--ink-soft)">Press play, close your eyes, and let me hold your hand across the distance. 🤍</p>
+</section>
+
+<!-- OPEN WHEN -->
+<section>
+  <p class="eyebrow reveal">for whenever you need it</p>
+  <h2 class="title reveal">Open when<span>…</span></h2>
+  <p class="reveal" style="text-align:center;font-style:italic;color:var(--ink-soft);margin-bottom:2rem">Little notes, waiting for your hardest moments. Tap the one you need. 🤍</p>
+  <div class="envs">
+    <button class="env reveal" data-key="sad" onclick="openEnv(this)">💧<span>when you are sad</span></button>
+    <button class="env reveal" data-key="miss" onclick="openEnv(this)">🌙<span>when you miss me</span></button>
+    <button class="env reveal" data-key="angry" onclick="openEnv(this)">🔥<span>when you are angry at me</span></button>
+    <button class="env reveal" data-key="sleep" onclick="openEnv(this)">✨<span>when you cannot sleep</span></button>
+    <button class="env reveal" data-key="doubt" onclick="openEnv(this)">🤍<span>when you doubt I have changed</span></button>
+    <button class="env reveal" data-key="smile" onclick="openEnv(this)">☀️<span>when you need to smile</span></button>
+  </div>
+  <div class="env-modal" id="envModal" onclick="if(event.target===this)closeEnv()">
+    <div class="env-card">
+      <span class="env-x" onclick="closeEnv()">&times;</span>
+      <h3 id="envTitle"></h3>
+      <p id="envBody"></p>
+    </div>
+  </div>
+</section>
+
+<!-- REPLY -->
+<section>
+  <p class="eyebrow reveal">only if you want to</p>
+  <h2 class="title reveal">Say anything <span>back</span></h2>
+  <p class="reveal" style="text-align:center;font-style:italic;color:var(--ink-soft);margin-bottom:2rem">There is no pressure, and no timeline. But if there is anything in your heart — a word, a feeling, or nothing at all — this little space is yours. 🤍</p>
+  <div class="reply reveal">
+    <textarea id="replyText" placeholder="write to me, whenever you are ready…"></textarea>
+    <div class="reply-btns">
+      <button class="btn" onclick="copyReply()">Copy my words</button>
+      <button class="btn2" onclick="waReply()">Send on WhatsApp</button>
+    </div>
+    <p class="reply-note" id="replyNote"></p>
+  </div>
+</section>
+
+<!-- VOWS -->
+<section>
+  <p class="eyebrow reveal">not words — behavior</p>
+  <h2 class="title reveal">How I will <span>become safe</span> for you</h2>
+  <p class="reveal" style="text-align:center;font-style:italic;color:var(--ink-soft);margin-bottom:2rem">These are not promises to win you back. They are the man I am choosing to become — whether it takes weeks, months, or longer.</p>
+  <ul class="vows">
+    <li class="reveal"><b>I will grow up.</b> The immaturity that hurt you — I am leaving it behind, for real, through my actions.</li>
+    <li class="reveal"><b>I will listen before I react.</b> No more panic, no more defending. I will hear your heart first, always.</li>
+    <li class="reveal"><b>I will make you feel understood.</b> Not forced, not pressured — simply understood, the way you always deserved.</li>
+    <li class="reveal"><b>I will never make you feel unsafe again.</b> Protecting your peace is my responsibility now.</li>
+    <li class="reveal"><b>I will keep showing you, patiently.</b> For as long as it takes to earn back the trust I broke.</li>
+  </ul>
+  <p class="reveal" style="text-align:center;font-style:italic;color:var(--rose);margin-top:1.6rem;font-size:1.15rem">I don't want you back for a moment. I want to earn a lifetime. 🤍</p>
+</section>
+
+<!-- PROMISE -->
+<section class="promise">
+  <p class="eyebrow reveal">my quiet hope</p>
+  <div class="ring reveal">💍</div>
+  <p class="big reveal">Not a demand. Just a hope —<br>that one day, when I have truly become<br>the person you deserved from the start,<br>you will feel safe enough to choose me again.</p>
+</section>
+
+<!-- SPECIAL -->
+<section class="center">
+  <p class="eyebrow reveal">one last thing, only for you</p>
+  <h2 class="title reveal">Before you <span>go…</span></h2>
+  <button class="btn reveal" onclick="revealSpecial()">Press here 🤍</button>
+  <div class="hidden-msg" id="special">
+    <p>If you have read all the way to here — thank you. Not for forgiving me, because you owe me nothing — but for letting me say everything I needed to say. I know a website cannot undo pain, and that love has to be proven slowly, in real life, with real patience. But I needed you to see, all in one place, that you are treasured beyond anything I know how to put into words. Whatever you decide, and whenever you decide it, I am on your side — for your dreams, your exams, your peace, and the beautiful life ahead of you. You were never too much. You were always more than enough. And you always will be. — Ashfaque 🤍</p>
+  </div>
+</section>
+
+<!-- END -->
+<section class="end">
+  <p class="reveal" style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink-soft);font-size:1.2rem;margin-bottom:.4rem">With honest love,</p>
+  <p class="fx reveal">Always yours</p>
+  <p class="sub reveal">for as long as it takes me to deserve you.</p>
+  <p class="date reveal">made with love, only for Mahi</p>
+</section>
+
+<div class="lbwrap" id="lbwrap" onclick="closeLb()"><span class="lbx" onclick="closeLb()">&times;</span><img id="lbimg" src=""><p class="lbcap" id="lbcap"></p></div>
+
+<div class="miniplayer" id="mp">
+  <button class="mp-pp" id="mpPP" onclick="togglePlay()" aria-label="Play or pause">&#9654;</button>
+  <div class="mp-info"><div class="mp-title" id="mpTitle">Our songs</div><div class="mp-bar"><div class="mp-fill" id="mpFill"></div></div></div>
+  <button class="mp-next" onclick="nextSong()" aria-label="Next song">&#9197;</button>
+</div>
+<audio id="aud"></audio>
+
+<script>
+  var wrap=document.getElementById('petals');
+  var glyphs=['🌸','🤍','♥','✿','❀'];
+  for(var i=0;i<16;i++){
+    var p=document.createElement('span');p.className='petal';
+    p.textContent=glyphs[Math.floor(Math.random()*glyphs.length)];
+    p.style.left=Math.random()*100+'vw';p.style.fontSize=(14+Math.random()*16)+'px';
+    p.style.animationDuration=(9+Math.random()*11)+'s';p.style.animationDelay=(Math.random()*12)+'s';
+    wrap.appendChild(p);
+  }
+  function revealScan(){
+    var vh=window.innerHeight||document.documentElement.clientHeight;
+    document.querySelectorAll('.reveal:not(.on)').forEach(function(el){
+      var r=el.getBoundingClientRect();
+      if(r.top < vh*0.92 && r.bottom > 0){ el.classList.add('on'); }
+    });
+  }
+  window.addEventListener('scroll',revealScan,{passive:true});
+  window.addEventListener('resize',revealScan);
+  window.addEventListener('load',revealScan);
+  revealScan();
+  setTimeout(revealScan,300); setTimeout(revealScan,1200);
+  function revealMsg(){document.getElementById('msg').classList.toggle('show')}
+  function tickCounter(){
+    var start=new Date('2022-09-20T00:00:00'),now=new Date(),ms=now-start,day=86400000;
+    var days=Math.floor(ms/day);ms-=days*day;var hrs=Math.floor(ms/3600000);ms-=hrs*3600000;
+    var mins=Math.floor(ms/60000);ms-=mins*60000;var secs=Math.floor(ms/1000);
+    document.getElementById('counter').innerHTML=u(days,'days')+u(hrs,'hours')+u(mins,'minutes')+u(secs,'seconds');
+  }
+  function u(n,l){return '<div class="unit"><div class="num">'+n.toLocaleString()+'</div><div class="lbl">'+l+'</div></div>'}
+  tickCounter();setInterval(tickCounter,1000);
+  function lb(btn){var s=btn.querySelector('img').src;document.getElementById('lbimg').src=s;document.getElementById('lbcap').textContent=btn.getAttribute('data-cap')||'';document.getElementById('lbwrap').classList.add('on')}
+  function closeLb(){document.getElementById('lbwrap').classList.remove('on')}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb()});
+  var TRACKS=[{title:'Perfect',artist:'Ed Sheeran',src:"audio/perfect.mp3"},
+{title:"Can't Help Falling in Love",artist:'Elvis Presley',src:"audio/cant-help-falling-in-love.mp3"},
+{title:'I Think They Call This Love',artist:'Elliot James Reay',src:"audio/i-think-they-call-this-love.mp3"},
+{title:'Shudhu Tomake',artist:'FRANKLIN',src:"audio/shudhu-tomake.mp3"},
+{title:'Sila',artist:'Abdul Hannan & Murtaza Qizilbash',src:"audio/sila.mp3"}];
+  var aud=document.getElementById("aud"),cur=-1,playing=false;var PLAY="\u25B6",PAUSE="\u23F8";
+  function setCard(i,on){var c=document.getElementById("song"+i),b=document.getElementById("pb"+i);if(!c)return;if(on){c.classList.add("playing");b.innerHTML=PAUSE}else{c.classList.remove("playing");b.innerHTML=PLAY}}
+  function playSong(i){if(cur===i){togglePlay();return;}if(cur>=0)setCard(cur,false);cur=i;aud.src=TRACKS[i].src;aud.play();playing=true;setCard(i,true);document.getElementById("mpTitle").textContent=TRACKS[i].title+" \u00B7 "+TRACKS[i].artist;document.getElementById("mpPP").innerHTML=PAUSE;document.getElementById("mp").classList.add("up");}
+  function togglePlay(){if(cur<0){playSong(0);return;}if(playing){aud.pause();playing=false;setCard(cur,false);document.getElementById("mpPP").innerHTML=PLAY;}else{aud.play();playing=true;setCard(cur,true);document.getElementById("mpPP").innerHTML=PAUSE;}}
+  function nextSong(){playSong((cur+1)%TRACKS.length);}
+  aud.addEventListener("ended",nextSong);
+  aud.addEventListener("timeupdate",function(){if(aud.duration){document.getElementById("mpFill").style.width=(aud.currentTime/aud.duration*100)+"%";}});
+var started=false;
+function startExperience(){
+  if(started)return;
+  var lk=document.getElementById("lock");
+  if(lk && !lk.classList.contains("gone")) return;
+  started=true;
+  var it=document.getElementById("intro");
+  if(it) it.classList.add("gone");
+  try{ playSong(0); }catch(e){}
+  window.scrollTo({top:0});
+}
+document.addEventListener("touchstart",function(){ if(!started) startExperience(); },{once:true});
+document.addEventListener("click",function(){ if(!started) startExperience(); },{once:true});
+</script>
+
+<div class="show" id="show">
+  <span class="show-x" onclick="showClose()">&times;</span>
+  <div class="show-stage"><img id="showImg" src="" alt="memory"><p class="show-cap" id="showCap"></p></div>
+  <div class="show-ctrl">
+    <button onclick="showPrev()">&lsaquo;</button>
+    <button id="showPP" onclick="showToggle()">&#10074;&#10074;</button>
+    <button onclick="showNext()">&rsaquo;</button>
+  </div>
+</div>
+<script>
+/* password */
+var PW="mahi", HINTTEXT="the name I love most (all lowercase)";
+document.getElementById("hint").textContent=HINTTEXT;
+function tryUnlock(){
+  var v=(document.getElementById("pw").value||"").trim().toLowerCase();
+  if(v===PW){ var lk=document.getElementById("lock"); lk.classList.add("gone"); startExperience(); }
+  else{
+    var e=document.getElementById("pwerr"); e.textContent="that is not it — try again, my love"; e.style.opacity=1;
+    var b=document.getElementById("pwbox"); b.classList.add("shake"); setTimeout(function(){b.classList.remove("shake")},480);
+  }
+}
+/* open-when envelopes */
+var MSG={
+  sad:{t:'when you are sad',b:'Breathe, my love. Whatever is weighing on you right now, you do not have to carry it alone. Your feelings are valid, and they are allowed to be big. I am not here to rush you or fix you — only to remind you that you are deeply loved, exactly as you are, even on your heaviest days. This feeling will pass. You have survived every hard day so far, and you will survive this one too. 🤍'},
+  miss:{t:'when you miss me',b:'If you are missing me right now, know that somewhere I am missing you too — quietly, constantly. Missing me does not mean anything has to change tonight. It only means that what we had was real. Close your eyes, remember one good moment, and let it hold you for a while. I am not going anywhere. 🤍'},
+  angry:{t:'when you are angry at me',b:'If you are angry with me, you have every right to be. I am not going to defend myself or make you feel bad for feeling it. Your anger makes sense — I gave it reasons. You do not have to soften it for my comfort. I would rather you feel it honestly than hide it away. And even in your anger, my love for you does not shrink one bit. Take your time. I am still here. 🤍'},
+  sleep:{t:'when you cannot sleep',b:'Restless nights are so hard. If your mind will not go quiet, try not to fight it — just breathe slowly, and let this be a small, calm place for a moment. You are safe. You are enough. Tomorrow does not need to be solved tonight. Rest when you can, my love. The world can wait for you. 🤍'},
+  doubt:{t:'when you doubt I have changed',b:'I know my words have failed you before, so I will not ask you to simply believe me. Doubt me if you need to — that is fair, and I understand it. All I ask is that you watch my actions over time, not my promises. Real change is slow and quiet, and I intend to show it, not just say it. You do not owe me your trust. I only hope to earn it, patiently, for as long as it takes. 🤍'},
+  smile:{t:'when you need to smile',b:'Then here is your reminder: your laugh is one of the best sounds in this whole world. You are funny, and warm, and impossibly easy to adore. Somewhere there is a version of us being silly together, and it is real. You deserve every good, light, happy thing. Go be gentle with yourself today — you have more than earned it. 🤍'}
+};
+function openEnv(btn){var m=MSG[btn.dataset.key];if(!m)return;document.getElementById("envTitle").textContent=m.t;document.getElementById("envBody").textContent=m.b;document.getElementById("envModal").classList.add("on");}
+function closeEnv(){document.getElementById("envModal").classList.remove("on");}
+/* slideshow */
+var SL=[],si=0,stimer=null,splaying=true;
+function buildSL(){SL=[];document.querySelectorAll(".gallery .ph").forEach(function(b){SL.push({src:b.querySelector("img").src,cap:b.getAttribute("data-cap")||""});});}
+function renderSL(){var it=SL[si];document.getElementById("showImg").src=it.src;document.getElementById("showCap").textContent=it.cap;}
+function startSL(){stopSL();stimer=setInterval(function(){si=(si+1)%SL.length;renderSL();},4800);}
+function stopSL(){if(stimer){clearInterval(stimer);stimer=null;}}
+function showOpen(){buildSL();if(!SL.length)return;si=0;renderSL();splaying=true;document.getElementById("showPP").innerHTML="&#10074;&#10074;";document.getElementById("show").classList.add("on");startSL();}
+function showToggle(){if(splaying){splaying=false;stopSL();document.getElementById("showPP").innerHTML="&#9654;";}else{splaying=true;startSL();document.getElementById("showPP").innerHTML="&#10074;&#10074;";}}
+function showNext(){si=(si+1)%SL.length;renderSL();if(splaying)startSL();}
+function showPrev(){si=(si-1+SL.length)%SL.length;renderSL();if(splaying)startSL();}
+function showClose(){stopSL();document.getElementById("show").classList.remove("on");}
+</script>
+<script>
+/* reply box */
+var PHONE=""; /* <-- put your WhatsApp number here, e.g. 8801XXXXXXXXX (country code, no + or spaces) */
+function rnote(m){document.getElementById("replyNote").textContent=m;}
+function copyReply(){
+  var el=document.getElementById("replyText"), t=(el.value||"").trim();
+  if(!t){rnote("write something first \u{1F90D}");return;}
+  el.select();
+  try{ document.execCommand("copy"); rnote("copied \u{1F90D} now paste it to me anywhere you like"); }
+  catch(e){ if(navigator.clipboard){navigator.clipboard.writeText(t).then(function(){rnote("copied \u{1F90D}");});} else {rnote("select your words and copy \u{1F90D}");} }
+}
+function waReply(){
+  var t=(document.getElementById("replyText").value||"").trim();
+  if(!t){rnote("write something first \u{1F90D}");return;}
+  if(!PHONE){rnote("WhatsApp is not set yet \u2014 use Copy for now \u{1F90D}");return;}
+  window.open("https://wa.me/"+PHONE+"?text="+encodeURIComponent(t),"_blank");
+}
+/* special reveal */
+function revealSpecial(){document.getElementById("special").classList.toggle("show");}
+</script>
+</body>
+</html>
