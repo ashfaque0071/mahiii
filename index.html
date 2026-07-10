@@ -253,6 +253,12 @@
   /* SPECIAL reveal (taller) */
   #special.show{max-height:2000px}
 
+  /* special button — native HTML fallback, so it works without JavaScript */
+  .special-details{text-align:center}
+  .special-details summary{list-style:none;display:inline-block}
+  .special-details summary::-webkit-details-marker{display:none}
+  .special-details[open] #special{max-height:2000px;opacity:1;margin-top:1.8rem}
+
   /* footer */
   .end{text-align:center;padding-bottom:8rem}
   .end .fx{font-family:'Parisienne',cursive;font-size:clamp(2.4rem,9vw,4rem);color:var(--wine)}
@@ -602,10 +608,12 @@
 <section class="center">
   <p class="eyebrow reveal">one last thing, only for you</p>
   <h2 class="title reveal">Before you <span>go…</span></h2>
-  <button class="btn reveal" onclick="revealSpecial()">Press here 🤍</button>
-  <div class="hidden-msg" id="special">
-    <p>If you have read all the way to here — thank you. Not for forgiving me, because you owe me nothing — but for letting me say everything I needed to say. I know a website cannot undo pain, and that love has to be proven slowly, in real life, with real patience. But I needed you to see, all in one place, that you are treasured beyond anything I know how to put into words. Whatever you decide, and whenever you decide it, I am on your side — for your dreams, your exams, your peace, and the beautiful life ahead of you. You were never too much. You were always more than enough. And you always will be. — Ashfaque 🤍</p>
-  </div>
+  <details class="special-details reveal">
+    <summary class="btn">Press here 🤍</summary>
+    <div class="hidden-msg" id="special">
+      <p>If you have read all the way to here — thank you. Not for forgiving me, because you owe me nothing — but for letting me say everything I needed to say. I know a website cannot undo pain, and that love has to be proven slowly, in real life, with real patience. But I needed you to see, all in one place, that you are treasured beyond anything I know how to put into words. Whatever you decide, and whenever you decide it, I am on your side — for your dreams, your exams, your peace, and the beautiful life ahead of you. You were never too much. You were always more than enough. And you always will be. — Ashfaque 🤍</p>
+    </div>
+  </details>
 </section>
 
 <!-- END -->
