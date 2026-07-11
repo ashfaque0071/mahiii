@@ -294,6 +294,25 @@
   .future-card h3{font-family:'Cormorant Garamond',serif;color:var(--wine);font-size:1.28rem;margin-bottom:.35rem}
   .future-card p{font-size:.94rem;color:var(--ink-soft);line-height:1.65}
 
+  /* HER FAVOURITES AND LITTLE SIGNATURES */
+  .favourites-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem}
+  .favourite-card{background:#fff;border:1px solid rgba(166,78,99,.16);border-radius:15px;padding:1.5rem 1.35rem;text-align:center;box-shadow:0 16px 38px -28px rgba(110,43,65,.5);transition:transform .35s ease,box-shadow .35s ease}
+  .favourite-card:hover{transform:translateY(-5px);box-shadow:0 22px 46px -28px rgba(110,43,65,.58)}
+  .favourite-card .fav-icon{font-size:1.55rem;margin-bottom:.55rem}
+  .favourite-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--wine);font-weight:600;margin-bottom:.35rem;line-height:1.2}
+  .favourite-card p{font-size:.96rem;color:var(--ink-soft);line-height:1.7}
+
+  /* GENTLE EXIT */
+  .exit-btn{margin-top:2rem}
+  .exit-modal{position:fixed;inset:0;background:rgba(74,49,56,.92);display:none;align-items:center;justify-content:center;z-index:175;padding:1.3rem}
+  .exit-modal.on{display:flex}
+  .exit-card{position:relative;max-width:540px;background:var(--ivory);border:1px solid rgba(194,154,84,.42);border-radius:18px;padding:2.6rem 2.2rem;text-align:center;box-shadow:0 30px 80px -20px rgba(0,0,0,.65)}
+  .exit-card .exit-icon{font-size:2rem;margin-bottom:.7rem}
+  .exit-card h3{font-family:'Parisienne',cursive;color:var(--rose);font-size:2.15rem;font-weight:400;margin-bottom:.8rem}
+  .exit-card p{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink);font-size:1.22rem;line-height:1.7}
+  .exit-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+  .exit-x{position:absolute;top:10px;right:16px;font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--ink-soft);cursor:pointer;line-height:1}
+
   /* HIDDEN HEART SECRET */
   .heartline .hrt{cursor:pointer;user-select:none;transition:transform .25s ease,color .25s ease}
   .heartline .hrt:hover{transform:scale(1.25);color:var(--wine)}
@@ -316,7 +335,7 @@
 
   /* NIGHT AND MOTION CONTROLS */
   body.night{--ivory:#1D1519;--ivory-2:#291D22;--wine:#E6AFC0;--rose:#D989A2;--blush:#6A3A49;--gold:#D1AD6B;--ink:#F1E8EB;--ink-soft:#C6B3BA}
-  body.night .r-card,body.night .tiny-card,body.night .future-card,body.night .vows li{background:#251A1F}
+  body.night .r-card,body.night .tiny-card,body.night .future-card,body.night .favourite-card,body.night .vows li{background:#251A1F}
   body.night .song:hover,body.night .env:hover,body.night .utility-btn:hover{background:#38252D}
   body.night .pwbox input{background:#251A1F;color:var(--ink)}
   body.night .env-card{background:var(--ivory)}
@@ -472,11 +491,24 @@
   <h2 class="title reveal">The tiny things I <span>remember</span></h2>
   <p class="reveal" style="text-align:center;font-style:italic;color:var(--ink-soft);margin-bottom:2.2rem">The small pieces of you that quietly became permanent parts of me.</p>
   <div class="tiny-grid">
-    <div class="tiny-card reveal"><div class="tiny-icon">🍗</div><h3>Your love for chicken</h3><p>I remember how much you love chicken. It is such a small detail, but even the smallest things connected to you have become precious to me.</p></div>
+    <div class="tiny-card reveal"><div class="tiny-icon">🍗</div><h3>Your love for chicken</h3><p>I love that how much you love chicken. It is such a small detail, but even the smallest things connected to you have become precious to me.</p></div>
     <div class="tiny-card reveal"><div class="tiny-icon">🤍</div><h3>The way you come to me</h3><p><span class="tiny-quote">“Ashfaque, ki korbo ami? Amar onek bhoy lagtese.”</span> I remember the way you come to me when you are frightened and look for comfort in me. That trust is something I should always answer with patience, calmness, and care.</p></div>
     <div class="tiny-card reveal"><div class="tiny-icon">😄</div><h3>Your wholehearted laughter</h3><p>Your laughter is mesmerizing. You never laugh halfway—you laugh freely, loudly, and with your whole heart. Hearing it has always made everything around me feel lighter.</p></div>
     <div class="tiny-card reveal"><div class="tiny-icon">🎁</div><h3>The first things you gave me</h3><p>I remember the first gift I received from you, and the first kiss you placed on my hand on my birthday. It was a small, tender moment, but I could never forget how loved it made me feel. &lt;3</p></div>
     <div class="tiny-card reveal"><div class="tiny-icon">🌱</div><h3>What you taught me</h3><p>You taught me to become mature—to become a man through responsibility, patience, understanding, emotional strength, and making the person I love feel safe. So much of the man I want to become began with what you tried to teach me.</p></div>
+  </div>
+</section>
+
+<!-- HER FAVOURITES AND LITTLE SIGNATURES -->
+<section>
+  <p class="eyebrow reveal">only the details I know for certain</p>
+  <h2 class="title reveal">Your favourites, your <span>little signatures</span></h2>
+  <p class="reveal" style="text-align:center;font-style:italic;color:var(--ink-soft);margin-bottom:2.2rem">The familiar things that make me think of you immediately.</p>
+  <div class="favourites-grid">
+    <div class="favourite-card reveal"><div class="fav-icon">🍗</div><h3>Chicken</h3><p>Your forever favourite—the food that can make an ordinary meal feel instantly better.</p></div>
+    <div class="favourite-card reveal"><div class="fav-icon">🩺</div><h3>The dream you are chasing</h3><p>Medicine, the future you are studying for, and the doctor you are working so hard to become.</p></div>
+    <div class="favourite-card reveal"><div class="fav-icon">😄</div><h3>Your wholehearted laughter</h3><p>The kind of laughter that never arrives halfway—free, loud, sincere, and completely yours.</p></div>
+    <div class="favourite-card reveal"><div class="fav-icon">🎁</div><h3>Your tender little gestures</h3><p>The first gift, the kiss on my hand on my birthday, and the quiet ways you made small moments unforgettable.</p></div>
   </div>
 </section>
 
@@ -730,6 +762,7 @@
   <p class="fx reveal">Always yours</p>
   <p class="sub reveal">for as long as it takes me to deserve you.</p>
   <p class="date reveal">made with love, only for Mahi<br>~~ASHFAQUE</p>
+  <button class="btn exit-btn reveal" onclick="gentleExit()">Close this little world</button>
 </section>
 
 <div class="lbwrap" id="lbwrap" onclick="closeLb()"><span class="lbx" onclick="closeLb()">&times;</span><img id="lbimg" src=""><p class="lbcap" id="lbcap"></p></div>
@@ -743,6 +776,19 @@
   </div>
 </div>
 
+
+<div class="exit-modal" id="exitModal" onclick="if(event.target===this)closeExit()">
+  <div class="exit-card">
+    <span class="exit-x" onclick="closeExit()">&times;</span>
+    <div class="exit-icon">🤍</div>
+    <h3>Thank you for being here</h3>
+    <p>There is nothing you need to decide or say right now. Take care of yourself, study well, and move at the pace that feels safe for you.</p>
+    <div class="exit-actions">
+      <button class="btn" onclick="exitToTop()">Return to the beginning</button>
+      <button class="btn2" onclick="closeExit()">Stay here a little longer</button>
+    </div>
+  </div>
+</div>
 
 <div class="miniplayer" id="mp">
   <button class="mp-pp" id="mpPP" onclick="togglePlay()" aria-label="Play or pause">&#9654;</button>
@@ -888,6 +934,11 @@ function waReply(){
 function revealSpecial(){document.getElementById("special").classList.toggle("show");}
 
 
+/* gentle exit */
+function gentleExit(){document.getElementById('exitModal').classList.add('on');}
+function closeExit(){document.getElementById('exitModal').classList.remove('on');}
+function exitToTop(){closeExit();var el=document.getElementById('top');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+
 /* quick controls and hidden heart */
 var utilityOpen=false,heartClicks=0;
 function toggleUtility(force){
@@ -927,7 +978,7 @@ document.addEventListener('click',function(e){
   if(utilityOpen&&panel&&btn&&!panel.contains(e.target)&&!btn.contains(e.target))toggleUtility(false);
 });
 document.addEventListener('keydown',function(e){
-  if(e.key==='Escape'){closeSecret();toggleUtility(false);}
+  if(e.key==='Escape'){closeSecret();closeExit();toggleUtility(false);}
 });
 if(aud){aud.addEventListener('play',updateUtilityState);aud.addEventListener('pause',updateUtilityState);}
 updateUtilityState();
