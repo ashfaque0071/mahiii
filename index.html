@@ -275,6 +275,54 @@
   .special-details summary::-webkit-details-marker{display:none}
   .special-details[open] #special{max-height:2000px;opacity:1;margin-top:1.8rem}
 
+
+  /* TINY THINGS I REMEMBER */
+  .tiny-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+  .tiny-card{background:#fff;border:1px solid rgba(166,78,99,.16);border-radius:14px;padding:1.55rem 1.4rem;box-shadow:0 14px 34px -26px rgba(110,43,65,.45);transition:transform .35s ease,box-shadow .35s ease}
+  .tiny-card:hover{transform:translateY(-5px);box-shadow:0 20px 42px -26px rgba(110,43,65,.55)}
+  .tiny-card .tiny-icon{font-size:1.45rem;margin-bottom:.55rem}
+  .tiny-card h3{font-family:'Cormorant Garamond',serif;font-size:1.42rem;color:var(--wine);font-weight:600;margin-bottom:.4rem;line-height:1.2}
+  .tiny-card p{font-size:.98rem;color:var(--ink-soft);line-height:1.75}
+  .tiny-quote{color:var(--rose);font-style:italic}
+
+  /* HER FUTURE */
+  .future-wrap{background:var(--ivory-2);border:1px solid rgba(194,154,84,.34);border-radius:18px;padding:clamp(1.6rem,5vw,2.6rem);box-shadow:0 22px 55px -34px rgba(110,43,65,.45)}
+  .future-main{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.28rem;color:var(--wine);text-align:center;line-height:1.65;margin-bottom:1.5rem}
+  .future-notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+  .future-card{background:#fff;border:1px solid rgba(166,78,99,.15);border-radius:13px;padding:1.25rem 1.15rem;text-align:center}
+  .future-card .fic{font-size:1.35rem;margin-bottom:.45rem}
+  .future-card h3{font-family:'Cormorant Garamond',serif;color:var(--wine);font-size:1.28rem;margin-bottom:.35rem}
+  .future-card p{font-size:.94rem;color:var(--ink-soft);line-height:1.65}
+
+  /* HIDDEN HEART SECRET */
+  .heartline .hrt{cursor:pointer;user-select:none;transition:transform .25s ease,color .25s ease}
+  .heartline .hrt:hover{transform:scale(1.25);color:var(--wine)}
+  .secret-note{position:fixed;inset:0;background:rgba(74,49,56,.9);display:none;align-items:center;justify-content:center;z-index:160;padding:1.3rem}
+  .secret-note.on{display:flex}
+  .secret-card{position:relative;max-width:500px;background:var(--ivory);border:1px solid rgba(194,154,84,.42);border-radius:18px;padding:2.5rem 2.1rem;text-align:center;box-shadow:0 30px 80px -20px rgba(0,0,0,.65)}
+  .secret-card .sic{font-size:2rem;margin-bottom:.75rem}
+  .secret-card h3{font-family:'Parisienne',cursive;color:var(--rose);font-size:2.15rem;font-weight:400;margin-bottom:.75rem}
+  .secret-card p{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink);font-size:1.25rem;line-height:1.65}
+  .secret-x{position:absolute;top:10px;right:16px;font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--ink-soft);cursor:pointer;line-height:1}
+
+  /* QUICK CONTROLS */
+  .utility-toggle{position:fixed;top:16px;right:16px;z-index:90;width:46px;height:46px;border-radius:50%;border:1px solid rgba(194,154,84,.42);background:var(--wine);color:var(--ivory);font-size:1.15rem;cursor:pointer;box-shadow:0 12px 30px -14px rgba(110,43,65,.7);display:flex;align-items:center;justify-content:center}
+  .utility-panel{position:fixed;top:70px;right:16px;z-index:90;width:min(245px,calc(100vw - 32px));background:var(--ivory);border:1px solid rgba(194,154,84,.38);border-radius:16px;padding:1rem;box-shadow:0 22px 55px -24px rgba(74,49,56,.55);opacity:0;transform:translateY(-8px) scale(.98);pointer-events:none;transition:opacity .25s ease,transform .25s ease}
+  .utility-panel.on{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+  .utility-title{font-family:'Cormorant Garamond',serif;color:var(--wine);font-size:1.2rem;text-align:center;margin-bottom:.7rem}
+  .utility-btn{width:100%;border:1px solid rgba(166,78,99,.22);background:var(--ivory-2);color:var(--ink);border-radius:10px;padding:.7rem .8rem;margin:.28rem 0;font-family:'Lora',serif;font-size:.9rem;cursor:pointer;text-align:left;transition:background .25s ease,border-color .25s ease}
+  .utility-btn:hover{background:#F3DFD3;border-color:var(--rose)}
+  .utility-sep{height:1px;background:rgba(194,154,84,.28);margin:.55rem 0}
+
+  /* NIGHT AND MOTION CONTROLS */
+  body.night{--ivory:#1D1519;--ivory-2:#291D22;--wine:#E6AFC0;--rose:#D989A2;--blush:#6A3A49;--gold:#D1AD6B;--ink:#F1E8EB;--ink-soft:#C6B3BA}
+  body.night .r-card,body.night .tiny-card,body.night .future-card,body.night .vows li{background:#251A1F}
+  body.night .song:hover,body.night .env:hover,body.night .utility-btn:hover{background:#38252D}
+  body.night .pwbox input{background:#251A1F;color:var(--ink)}
+  body.night .env-card{background:var(--ivory)}
+  body.no-motion .petals,body.no-motion .love-words{display:none}
+  body.no-motion *{animation-play-state:paused!important}
+
   /* footer */
   .end{text-align:center;padding-bottom:8rem}
   .end .fx{font-family:'Parisienne',cursive;font-size:clamp(2.4rem,9vw,4rem);color:var(--wine)}
@@ -315,12 +363,25 @@
 <div class="petals" id="petals" aria-hidden="true"></div>
 <div class="love-words" id="loveWords" aria-hidden="true"></div>
 
+<button class="utility-toggle" id="utilityToggle" onclick="toggleUtility()" aria-label="Open quick controls" aria-expanded="false">☰</button>
+<div class="utility-panel" id="utilityPanel">
+  <p class="utility-title">Quick controls</p>
+  <button class="utility-btn" id="musicControl" onclick="toggleSiteMusic()">♫ Music: on</button>
+  <button class="utility-btn" id="motionControl" onclick="toggleMotion()">✦ Motion: on</button>
+  <button class="utility-btn" id="nightControl" onclick="toggleNight()">☾ Night mode: off</button>
+  <div class="utility-sep"></div>
+  <button class="utility-btn" onclick="jumpTo('letter')">↳ Go to the letter</button>
+  <button class="utility-btn" onclick="jumpTo('memories')">↳ Go to memories</button>
+  <button class="utility-btn" onclick="jumpTo('top')">↑ Back to the top</button>
+</div>
+
+
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="top">
   <p class="for">For the one my heart chose — and keeps choosing —</p>
   <h1>Mahi</h1>
   <p class="tag">the love I will spend my life learning to deserve</p>
-  <div class="heartline"><span class="ln"></span><span class="hrt">&hearts;</span><span class="ln r"></span></div>
+  <div class="heartline"><span class="ln"></span><span class="hrt" role="button" tabindex="0" aria-label="A hidden heart" onclick="heartSecret()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();heartSecret()}">&hearts;</span><span class="ln r"></span></div>
   <p class="scroll-hint">scroll, my love &darr;</p>
 </section>
 
@@ -347,7 +408,7 @@
 </section>
 
 <!-- LETTER -->
-<section>
+<section id="letter">
   <div class="letter reveal">
     <p class="ldate">Written on the 8th of July</p>
     <p class="greet">Mahi,</p>
@@ -404,8 +465,23 @@
   </div>
 </section>
 
-<!-- MEMORIES -->
+
+<!-- TINY THINGS I REMEMBER -->
 <section>
+  <p class="eyebrow reveal">the details that stayed with me</p>
+  <h2 class="title reveal">The tiny things I <span>remember</span></h2>
+  <p class="reveal" style="text-align:center;font-style:italic;color:var(--ink-soft);margin-bottom:2.2rem">The small pieces of you that quietly became permanent parts of me.</p>
+  <div class="tiny-grid">
+    <div class="tiny-card reveal"><div class="tiny-icon">🍗</div><h3>Your love for chicken</h3><p>I remember how much you love chicken. It is such a small detail, but even the smallest things connected to you have become precious to me.</p></div>
+    <div class="tiny-card reveal"><div class="tiny-icon">🤍</div><h3>The way you come to me</h3><p><span class="tiny-quote">“Ashfaque, ki korbo ami? Amar onek bhoy lagtese.”</span> I remember the way you come to me when you are frightened and look for comfort in me. That trust is something I should always answer with patience, calmness, and care.</p></div>
+    <div class="tiny-card reveal"><div class="tiny-icon">😄</div><h3>Your wholehearted laughter</h3><p>Your laughter is mesmerizing. You never laugh halfway—you laugh freely, loudly, and with your whole heart. Hearing it has always made everything around me feel lighter.</p></div>
+    <div class="tiny-card reveal"><div class="tiny-icon">🎁</div><h3>The first things you gave me</h3><p>I remember the first gift I received from you, and the first kiss you placed on my hand on my birthday. It was a small, tender moment, but I could never forget how loved it made me feel. &lt;3</p></div>
+    <div class="tiny-card reveal"><div class="tiny-icon">🌱</div><h3>What you taught me</h3><p>You taught me to become mature—to become a man through responsibility, patience, understanding, emotional strength, and making the person I love feel safe. So much of the man I want to become began with what you tried to teach me.</p></div>
+  </div>
+</section>
+
+<!-- MEMORIES -->
+<section id="memories">
   <p class="eyebrow reveal">our story, in moments</p>
   <h2 class="title reveal">Every memory with <span>you</span></h2>
   <p class="reveal" style="text-align:center;font-style:italic;color:var(--ink-soft);margin-bottom:2.4rem">Every chapter of us — your face, our days, the small quiet moments. Tap any photo to hold it a little longer. 🤍</p>
@@ -562,6 +638,21 @@
   <p class="reveal" style="text-align:center;margin-top:1.6rem;font-style:italic;color:var(--ink-soft)">Press play, close your eyes, and let me hold your hand across the distance. 🤍</p>
 </section>
 
+
+<!-- HER FUTURE -->
+<section>
+  <p class="eyebrow reveal">for the dream you are building</p>
+  <h2 class="title reveal">The future waiting for <span>you</span></h2>
+  <div class="future-wrap reveal">
+    <p class="future-main">Mahi, your studies, your admission journey, your peace, and the life you are working toward matter deeply. You never have to divide your attention to reassure me. Study freely. Grow fully. I will be proud of you from whatever distance you need.</p>
+    <div class="future-notes">
+      <div class="future-card"><div class="fic">📚</div><h3>Before you study</h3><p>Put everything else down for a while. Your dream deserves your full attention, and you are capable of more than you realize.</p></div>
+      <div class="future-card"><div class="fic">🩺</div><h3>Before an exam</h3><p>You do not need to feel fearless. You only need to take the next question calmly and trust the work you have already done.</p></div>
+      <div class="future-card"><div class="fic">🌙</div><h3>After a hard day</h3><p>One difficult day cannot define your future. Rest, breathe, and begin again. I believe in the doctor you are working to become.</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- OPEN WHEN -->
 <section>
   <p class="eyebrow reveal">for whenever you need it</p>
@@ -642,6 +733,16 @@
 </section>
 
 <div class="lbwrap" id="lbwrap" onclick="closeLb()"><span class="lbx" onclick="closeLb()">&times;</span><img id="lbimg" src=""><p class="lbcap" id="lbcap"></p></div>
+
+<div class="secret-note" id="secretNote" onclick="if(event.target===this)closeSecret()">
+  <div class="secret-card">
+    <span class="secret-x" onclick="closeSecret()">&times;</span>
+    <div class="sic">🤍</div>
+    <h3>You found it</h3>
+    <p>You found the smallest secret here: I still smile whenever I see your name.</p>
+  </div>
+</div>
+
 
 <div class="miniplayer" id="mp">
   <button class="mp-pp" id="mpPP" onclick="togglePlay()" aria-label="Play or pause">&#9654;</button>
@@ -785,6 +886,51 @@ function waReply(){
 }
 /* special reveal */
 function revealSpecial(){document.getElementById("special").classList.toggle("show");}
+
+
+/* quick controls and hidden heart */
+var utilityOpen=false,heartClicks=0;
+function toggleUtility(force){
+  var panel=document.getElementById('utilityPanel'),btn=document.getElementById('utilityToggle');
+  utilityOpen=(typeof force==='boolean')?force:!utilityOpen;
+  panel.classList.toggle('on',utilityOpen);
+  btn.setAttribute('aria-expanded',utilityOpen?'true':'false');
+  btn.textContent=utilityOpen?'×':'☰';
+}
+function jumpTo(id){
+  var el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  toggleUtility(false);
+}
+function updateUtilityState(){
+  var mc=document.getElementById('musicControl'),mo=document.getElementById('motionControl'),nc=document.getElementById('nightControl');
+  if(mc)mc.textContent='♫ Music: '+(aud&&!aud.paused?'on':'off');
+  if(mo)mo.textContent='✦ Motion: '+(document.body.classList.contains('no-motion')?'off':'on');
+  if(nc)nc.textContent='☾ Night mode: '+(document.body.classList.contains('night')?'on':'off');
+}
+function toggleSiteMusic(){
+  if(!aud)return;
+  if(cur<0)playSong(0);else togglePlay();
+  setTimeout(updateUtilityState,50);
+}
+function toggleMotion(){document.body.classList.toggle('no-motion');updateUtilityState();}
+function toggleNight(){document.body.classList.toggle('night');updateUtilityState();}
+function heartSecret(){
+  heartClicks++;
+  var h=document.querySelector('.heartline .hrt');
+  if(h){h.style.transform='scale(1.35)';setTimeout(function(){h.style.transform='';},180);}
+  if(heartClicks>=5){heartClicks=0;document.getElementById('secretNote').classList.add('on');}
+}
+function closeSecret(){document.getElementById('secretNote').classList.remove('on');}
+document.addEventListener('click',function(e){
+  var panel=document.getElementById('utilityPanel'),btn=document.getElementById('utilityToggle');
+  if(utilityOpen&&panel&&btn&&!panel.contains(e.target)&&!btn.contains(e.target))toggleUtility(false);
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){closeSecret();toggleUtility(false);}
+});
+if(aud){aud.addEventListener('play',updateUtilityState);aud.addEventListener('pause',updateUtilityState);}
+updateUtilityState();
 </script>
 </body>
 </html>
